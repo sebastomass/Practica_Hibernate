@@ -1,5 +1,12 @@
 package Acces_a_dades.Navegador;
 
+import org.w3c.dom.*;
+import org.xml.sax.SAXException;
+
+import javax.print.Doc;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -15,7 +22,10 @@ import static Acces_a_dades.Navegador.Function.*;
 class Navigator {
     private File _file;
     private File _logFile;
+    private Document _xmlDocument;
     private String _commandsFilePath;
+    // Available languages: es, cat.
+    private String _language = "es";
     private String _log;
     private String _currentCommand;
     private String _startingPath;
@@ -34,6 +44,14 @@ class Navigator {
         this._startingPath = path;
         this._file = new File(path);
         this._logFile = new File(path, "Log.txt");
+        try {
+            Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new File("src/Acces_a_dades/Navegador/literals.xml"));
+            document.getDocumentElement().normalize();
+            this._xmlDocument = document;
+        } catch (SAXException | IOException | ParserConfigurationException e) {
+            e.printStackTrace();
+        }
+
         System.out.println("Utilitzi la comanda 'help' per a obtenir la llista de funcions");
     }
 
@@ -254,7 +272,7 @@ class Navigator {
                     this._lastDirectory = this._file;
                     this._file = fileGoto;
                 } else {
-                    System.out.println(this._parameters[0] + " no és un directori.");
+                    System.out.println(getElementFromNodeTree("notrobatfitxercarregar"));
                 }
                 break;
             case GOLAST:
@@ -266,9 +284,9 @@ class Navigator {
                 if (list != null) {
                     for (File file : list) {
                         if (file.isDirectory()) {
-                            System.out.println("- " + file.getName() + "--- Directori");
+                            System.out.println("- " + file.getName() + "--- "+getElementFromNodeTree("Directori"));
                         } else {
-                            System.out.println("- " + file.getName() + " --- Arxiu");
+                            System.out.println("- " + file.getName() + " --- "+getElementFromNodeTree("Fitxer"));
                         }
                     }
                 }
@@ -279,7 +297,7 @@ class Navigator {
                 if (parentFile != null) {
                     this._file = parentFile;
                 } else {
-                    System.out.println("Error. El fitxer pare no és un directori.");
+                    System.out.println(getElementFromNodeTree("directoriparenotrobat"));
                 }
                 break;
 
@@ -356,7 +374,7 @@ class Navigator {
                     File file = new File(this._file.getAbsolutePath() + "\\" + directory);
                     if (!file.exists()) {
                         if (file.mkdir()) {
-                            System.out.println("Directori " + directory + " creat amb èxit.");
+                            System.out.println("Directori " + directory + " " +getElementFromNodeTree("creatcorrectament"));
                         } else {
                             System.out.println("Error al crear el directori " + directory + ".");
                         }
@@ -369,7 +387,7 @@ class Navigator {
                     if (!file.exists()) {
                         try {
                             if (file.createNewFile()) {
-                                System.out.println("Arxiu " + filename + "creat amb èxit.");
+                                System.out.println("Arxiu " + filename + " " + getElementFromNodeTree("creatcorrectament"));
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -416,7 +434,7 @@ class Navigator {
                 for (String directory : this._parameters) {
                     File currentFile = new File(this._file.getAbsolutePath() + "\\" + directory);
                     if (currentFile.delete()) {
-                        System.out.println("Directori " + directory + " esborrat amb èxit.");
+                        System.out.println("Directori " + directory + " " + getElementFromNodeTree("eliminatcorrectament"));
                     } else {
                         System.out.println("Error al esborrar el directori " + directory);
                     }
@@ -426,7 +444,7 @@ class Navigator {
                 for (String file : this._parameters) {
                     File currentFile = new File(this._file.getAbsolutePath() + "\\" + file);
                     if (currentFile.delete()) {
-                        System.out.println("Arxiu " + file + " esborrat amb èxit.");
+                        System.out.println("Arxiu " + file + " " + getElementFromNodeTree("eliminatcorrectament"));
                     } else {
                         System.out.println("Error al esborrar l'arxiu " + file);
                     }
@@ -435,9 +453,11 @@ class Navigator {
             case LOG:
                 switch (this._parameters[0]){
                     case "0":
+                        System.out.println(getElementFromNodeTree("logdesactivat"));
                         this._logFile = null;
                         break;
                     case "1":
+                        System.out.println(getElementFromNodeTree("logactivat"));
                         this._logFile = new File(this._startingPath, "Log.txt");
                         break;
                 }
@@ -463,5 +483,19 @@ class Navigator {
         }
         this._errorMessage = "";
         mainLoop();
+    }
+
+    private String getElementFromNodeTree(String element){
+        String output = "";
+        Node n;
+        NodeList nodeList = _xmlDocument.getElementsByTagName("literal");
+        for(int i = 0; i < nodeList.getLength(); i++){
+            n = nodeList.item(i);
+            if(n.getAttributes().getNamedItem("id").getTextContent().equals(element) && n.getNodeType() == Node.ELEMENT_NODE){
+                Element el = (Element) n;
+                output = el.getElementsByTagName(this._language).item(0).getTextContent();
+            }
+        }
+        return output;
     }
 }
