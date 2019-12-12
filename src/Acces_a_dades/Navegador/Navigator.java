@@ -278,7 +278,7 @@ class Navigator {
                     this._lastDirectory = this._file;
                     this._file = fileGoto;
                 } else {
-                    System.out.println(this.literalsBD.getMessageByQuery("notrobatfitxercarregar"));
+                    System.out.println(getElementFromNodeTree("notrobatfitxercarregar"));
                 }
                 break;
             case GOLAST:
@@ -290,9 +290,9 @@ class Navigator {
                 if (list != null) {
                     for (File file : list) {
                         if (file.isDirectory()) {
-                            System.out.println("- " + file.getName() + "--- "+ this.literalsBD.getMessageByQuery("Directori"));
+                            System.out.println("- " + file.getName() + "--- "+ getElementFromNodeTree("Directori"));
                         } else {
-                            System.out.println("- " + file.getName() + " --- " + this.literalsBD.getMessageByQuery("Fitxer"));
+                            System.out.println("- " + file.getName() + " --- " + getElementFromNodeTree("Fitxer"));
                         }
                     }
                 }
@@ -303,7 +303,7 @@ class Navigator {
                 if (parentFile != null) {
                     this._file = parentFile;
                 } else {
-                    System.out.println(this.literalsBD.getMessageByQuery("directoriparenotrobat"));
+                    System.out.println(getElementFromNodeTree("directoriparenotrobat"));
                 }
                 break;
 
@@ -312,25 +312,25 @@ class Navigator {
                 if (fileToGetInfo.isFile()) {
                     String infoMessage = "Informació de: " + this._parameters[0] + "\n";
                     if (fileToGetInfo.canRead()) {
-                        infoMessage += this.literalsBD.getMessageByQuery("nopermisos");
+                        infoMessage += getElementFromNodeTree("nopermisos");
                     } else {
-                        infoMessage += this.literalsBD.getMessageByQuery("nopermisos");
+                        infoMessage += getElementFromNodeTree("nopermisos");
                     }
                     infoMessage += "\n";
                     if (fileToGetInfo.canWrite()) {
-                        infoMessage += this.literalsBD.getMessageByQuery("nopermisos");
+                        infoMessage += getElementFromNodeTree("nopermisos");
                     } else {
-                        infoMessage += this.literalsBD.getMessageByQuery("nopermisos");
+                        infoMessage += getElementFromNodeTree("nopermisos");
                     }
                     infoMessage += "\n";
                     if (fileToGetInfo.canExecute()) {
-                        infoMessage += this.literalsBD.getMessageByQuery("nopermisos");
+                        infoMessage += getElementFromNodeTree("nopermisos");
                     } else {
-                        infoMessage += this.literalsBD.getMessageByQuery("nopermisos");
+                        infoMessage += getElementFromNodeTree("nopermisos");
                     }
                     System.out.println(infoMessage);
                 } else {
-                    System.out.println(this.literalsBD.getMessageByQuery("noexisteix"));
+                    System.out.println(getElementFromNodeTree("noexisteix"));
                 }
                 break;
 
@@ -339,25 +339,25 @@ class Navigator {
                 if (directoryToGetInfo.isDirectory()) {
                     String infoMessage = "Informació de: " + this._parameters[0] + "\n";
                     if (directoryToGetInfo.canRead()) {
-                        infoMessage += this.literalsBD.getMessageByQuery("nopermisos");
+                        infoMessage += getElementFromNodeTree("nopermisos");
                     } else {
-                        infoMessage += this.literalsBD.getMessageByQuery("nopermisos");
+                        infoMessage += getElementFromNodeTree("nopermisos");
                     }
                     infoMessage += "\n";
                     if (directoryToGetInfo.canWrite()) {
-                        infoMessage += this.literalsBD.getMessageByQuery("nopermisos");
+                        infoMessage += getElementFromNodeTree("nopermisos");
                     } else {
-                        infoMessage += this.literalsBD.getMessageByQuery("nopermisos");
+                        infoMessage += getElementFromNodeTree("nopermisos");
                     }
                     infoMessage += "\n";
                     if (directoryToGetInfo.canExecute()) {
-                        infoMessage += this.literalsBD.getMessageByQuery("nopermisos");
+                        infoMessage += getElementFromNodeTree("nopermisos");
                     } else {
-                        infoMessage += this.literalsBD.getMessageByQuery("nopermisos");
+                        infoMessage += getElementFromNodeTree("nopermisos");
                     }
                     System.out.println(infoMessage);
                 } else {
-                    System.out.println(this.literalsBD.getMessageByQuery("noexisteix"));
+                    System.out.println(getElementFromNodeTree("noexisteix"));
                 }
                 break;
             case HELP:
@@ -380,7 +380,7 @@ class Navigator {
                     File file = new File(this._file.getAbsolutePath() + "\\" + directory);
                     if (!file.exists()) {
                         if (file.mkdir()) {
-                            System.out.println("Directori " + directory + " " +this.literalsBD.getMessageByQuery("creatcorrectament"));
+                            System.out.println("Directori " + directory + " " +getElementFromNodeTree("creatcorrectament"));
                         } else {
                             System.out.println("Error al crear el directori " + directory + ".");
                         }
@@ -393,7 +393,7 @@ class Navigator {
                     if (!file.exists()) {
                         try {
                             if (file.createNewFile()) {
-                                System.out.println("Arxiu " + filename + " " + this.literalsBD.getMessageByQuery("creatcorrectament"));
+                                System.out.println("Arxiu " + filename + " " + getElementFromNodeTree("creatcorrectament"));
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -440,7 +440,7 @@ class Navigator {
                 for (String directory : this._parameters) {
                     File currentFile = new File(this._file.getAbsolutePath() + "\\" + directory);
                     if (currentFile.delete()) {
-                        System.out.println("Directori " + directory + " " + this.literalsBD.getMessageByQuery("eliminatcorrectament"));
+                        System.out.println("Directori " + directory + " " + getElementFromNodeTree("eliminatcorrectament"));
                     } else {
                         System.out.println("Error al esborrar el directori " + directory);
                     }
@@ -450,7 +450,7 @@ class Navigator {
                 for (String file : this._parameters) {
                     File currentFile = new File(this._file.getAbsolutePath() + "\\" + file);
                     if (currentFile.delete()) {
-                        System.out.println("Arxiu " + file + " " + this.literalsBD.getMessageByQuery("eliminatcorrectament"));
+                        System.out.println("Arxiu " + file + " " + getElementFromNodeTree("eliminatcorrectament"));
                     } else {
                         System.out.println("Error al esborrar l'arxiu " + file);
                     }
@@ -459,11 +459,11 @@ class Navigator {
             case LOG:
                 switch (this._parameters[0]){
                     case "0":
-                        System.out.println(this.literalsBD.getMessageByQuery("logdesactivat"));
+                        System.out.println(getElementFromNodeTree("logdesactivat"));
                         this._logFile = null;
                         break;
                     case "1":
-                        System.out.println(this.literalsBD.getMessageByQuery("logactivat"));
+                        System.out.println(getElementFromNodeTree("logactivat"));
                         this._logFile = new File(this._startingPath, "Log.txt");
                         break;
                 }
