@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<literals>
+    <literal id="directorinotrobat">
+        <es>Directorio no encontrado.</es>
+        <cat>Directori no trobat.</cat>
+        <en></en>
+    </literal>
+    <literal id="darrerdirectorinoestroba">
+        <es>El ultimo directorio visitado no se puede encontrar.</es>
+        <cat>El darrer directori visitat no es pot trobar.</cat>
+        <en></en>
+    </literal>
+    <literal id="noexisteixhistorial">
+        <es>No existe ningún historial de navegación.</es>
+        <cat>No existeix cap historial de navegació.</cat>
+        <en></en>
+    </literal>
+    <literal id="dirsenseelements">
+        <es>Directorio sin elementos.</es>
+        <cat>Directori sense elements.</cat>
+        <en></en>
+    </literal>
+    <literal id="directoriparenotrobat">
+        <es>Directorio padre no encontrado.</es>
+        <cat>Directori pare no trobat.</cat>
+        <en></en>
+    </literal>-
+    <literal id="Directori">
+        <es>Directorio</es>
+        <cat>Directori</cat>
+        <en></en>
+    </literal>
+    <literal id="creatcorrectament">
+        <es>creado correctamente.</es>
+        <cat>creat correctament.</cat>
+        <en></en>
+    </literal>
+    <literal id="jaexisteix">
+        <es>ya existe.</es>
+        <cat>ja existeix.</cat>
+        <en></en>
+    </literal>
+    <literal id="Fitxer">
+        <es>Fichero</es>
+        <cat>Fitxer</cat>
+        <en></en>
+    </literal>
+    <literal id="eliminatcorrectament">
+        <es>eliminado correctamente</es>
+        <cat>eliminat correctament.</cat>
+        <en></en>
+    </literal>
+    <literal id="noexisteix">
+        <es>no existe.</es>
+        <cat>no existeix.</cat>
+        <en></en>
+    </literal>
+    <literal id="fiexecucio">
+        <es>Fin de la ejecución.</es>
+        <cat>Fi de l'execució.</cat>
+        <en></en>
+    </literal>
+    <literal id="logactivat">
+        <es>Logs activados.</es>
+        <cat>Logs activats.</cat>
+        <en></en>
+    </literal>
+    <literal id="logdesactivat">
+        <es>Logs desactivados.</es>
+        <cat>Logs desactivats.</cat>
+        <en></en>
+    </literal>
+    <literal id="carregantfitxer">
+        <es>Cargando fichero:</es>
+        <cat>Carregant fitxer:</cat>
+        <en></en>
+    </literal>
+    <literal id="fitxerbuit">
+        <es>Fichero vacio:</es>
+        <cat>Fitxer buit:</cat>
+        <en></en>
+    </literal>
+    <literal id="notrobatfitxercarregar">
+        <es>No se ha encontrado fichero para cargar:</es>
+        <cat>No s'ha trobat fitxer per carregar:</cat>
+        <en></en>
+    </literal>
+    <literal id="errorfitxerexistent">
+        <es>Error: Fichero ya existente.</es>
+        <cat>Error: Fitxer ja existent.</cat>
+        <en></en>
+    </literal>
+    <literal id="modcorrectament">
+        <es>Modificado correctamente.</es>
+        <cat>Modificat correctament.</cat>
+        <en></en>
+    </literal>
+    <literal id="errornomodificat">
+        <es>Erro: No se ha podido modificar.</es>
+        <cat>Error: No s'ha pogut modificar.</cat>
+        <en></en>
+    </literal>
+    <literal id="nopermisos">
+        <es>No tienes permisos para ejecutar este comando</es>
+        <cat>No tens permisos per executar aquest comandament</cat>
+        <en></en>
+    </literal>
+</literals>
